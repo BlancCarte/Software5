@@ -28,12 +28,10 @@ var labels1 = ["January", "February", "March", "April", "May", "June"];
 var labels2 = ["July", "August", "September", "October", "November", "December"];
 
 //const labels1 = Utils.months({count: 7});
-var btn = document.getElementsByClassName('DateSelect');
-console.log(btn);
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
-var myLineChart = new Chart(ctx, {
+var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: labels1,
@@ -70,9 +68,29 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
-console.log(myLineChart.data.datasets)
-btn[2].addEventListener('click', e => {
-  myLineChart.data.datasets = [data2]
-  myLineChart.update();
-  console.log(myLineChart.data.datasets)
-});
+var btn = document.getElementsByClassName('DateSelect');
+console.log(btn);
+console.log(myBarChart.data.datasets)
+// btn[2].addEventListener('click', e => {
+ 
+//   myLineChart.data.datasets = [data2]
+//   myLineChart.update();
+//   console.log(myLineChart.data.datasets)
+// });
+//조회 버튼
+function BarBtnClick(){
+  var e = document.getElementById("BarSelect");
+  var strUser = e.options[e.selectedIndex].value;
+  if(strUser == 1){
+    myBarChart.data.datasets = [data1]
+    myBarChart.data.labels = labels1
+    myBarChart.update();
+  }else{
+    myBarChart.data.datasets = [data2]
+    myBarChart.data.labels = labels2
+    myBarChart.update();
+  }
+}
+//데이터베이스 연결 후 자바 메소드로 데이터 객체 가지고와서 data1에 적용하면 끝
+//차트 애니메이션 효과 2번 클릭시 적용 안됌
+//버튼이랑 select css 바꿔야됌
