@@ -3,15 +3,15 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 //dataSet
-var data1 = {
+var data11 = {
   data: [12.21, 15.58, 11.25, 8.32, 4.4],
   backgroundColor: ['#92E68C', '#98A9FA', '#FAEF64', '#FFB76D','#FA6E7E'],
 };
-var data2 = {
+var data21 = {
   data: [12.21, 15.58, 11.25, 8.32, 4.4],
   backgroundColor: ['#92E68C', '#98A9FA', '#FAEF64', '#FFB76D','#FA6E7E'],
 };
-var data3 = {
+var data31 = {
   data: [12.21, 15.58, 11.25, 8.32, 4.4],
   backgroundColor: ['#92E68C', '#98A9FA', '#FAEF64', '#FFB76D','#FA6E7E'],
 };
@@ -25,7 +25,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["주메뉴1", "주메뉴2", "주메뉴3","주메뉴4", "기타"],
     datasets: [
-      data1
+      data11
     ],
   },
 });
