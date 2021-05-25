@@ -13,7 +13,7 @@ public class OverlapID {
 		ResultSet rs = null;
 		int result = -1;
 		try {
-			String sql = "select MAX(ID) from mbd_user where ID=?"; // select 뒤에 MAX()를 쓰면 WHERE 조건
+			String sql = "select MAX(ID) from user where ID=?"; // select 뒤에 MAX()를 쓰면 WHERE 조건
 																							// 절에 해당하는 값이 없을 때 null을 리턴
 			conn = dao.getConnection();
 			pstmt = conn.prepareStatement(sql);
