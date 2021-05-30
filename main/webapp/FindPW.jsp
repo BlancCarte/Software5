@@ -51,6 +51,9 @@
 body {
 	color: #FFFFFF
 }
+.body1{
+background-color : #212121;}
+}
 
 @media ( min-width : 768px) {
 	.bd-placeholder-img-lg {
@@ -59,7 +62,7 @@ body {
 }
 </style>
 <%@ include file="NAVbar.jsp"%>
-<body class="bg-dark">
+<body class="body1">
 	
 	<div class="container">
 		<main>		

@@ -67,18 +67,11 @@ background-color : #212121;}
 <%@ include file="NAVbar.jsp"%>
 
 <body class="body1">
-
 	<main class="text-center form-signin" style="margin-top:150px;">
-		<form action="LoginProcess.jsp">
-			<h2>로그인</h2>
+		<form action="My_Page_Process.jsp">
+			<h2>회원정보수정</h2>
 
-			<div>
-
-				<div style="margin-bottom: 10px;">
-					<label for="userID" class="visually-hidden">아이디</label> <input
-						type="text" id="userID" name="userID"
-						class="form-control input-lg" placeholder="아이디" required autofocus>
-				</div>
+			<div>				
 
 				<div style="margin-bottom: 10px;">
 					<label for="userPW" class="visually-hidden">비밀번호</label> <input
@@ -88,7 +81,7 @@ background-color : #212121;}
 			</div>
 
 			<button class="w-100 btn btn-lg btn-success"
-				style="margin-bottom: 10px;" type="submit">로그인</button>
+				style="margin-bottom: 10px;" type="submit">수정하기</button>
 				
 				
 
@@ -99,36 +92,7 @@ background-color : #212121;}
 					style="text-decoration: none; color: #5CB85C">비밀번호 찾기</a></li>
 				<li class="list-inline-item"><a href="Signup.jsp"
 					style="text-decoration: none; color: #5CB85C">회원가입</a></li>
-			</ul>
-			<a id="kakao-login-btn"></a>
-			<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-<a id="kakao-login-btn"></a>
-<a href="http://developers.kakao.com/logout"></a>
-<script type='text/javascript'>
-    //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('13f658a5514329fd9fdcd78d0684720d');
-    console.log(Kakao.isInitialized());
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-        container: '#kakao-login-btn',
-        persistAccessToken: true,
-        success: function (authObj) {
-        		request.setCharacterEncoding("utf-8");
-            alert(JSON.stringify(authObj));
-            Kakao.Auth.setAccessToken(authObj.access_token);
-            var acs_token = authObj.access_token;
-            session.setAttribute("acs_token", acs_token);
-        },
-        fail: function (err) {
-            alert(JSON.stringify(err));
-        }
-    });
-  //]]>
-
-</script>
+			</ul>			
     
 			<%@ include file="Footer3.jsp"%>
 

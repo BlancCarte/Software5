@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="user.OverlapID"%>
+<%@ page import="user.User"%>
+<%@ page import="user.Update"%>
+<%@page import="java.util.*"%>
+<%request.setCharacterEncoding("utf-8");%>
+<%User user= (User)session.getAttribute("user");%>
+<% 
+String user_ID = user.getUserId();
+String user_PW = user.getUserPw();
+String user_Name = user.getUserName();
+String user_Birth = user.getUserBirth();
+String user_Gender = user.getUserGender();
+String user_Email = user.getUserEmail();
+String user_Phone = user.getUserPhone();
+session.setAttribute("userBirth", user_Birth);
+session.setAttribute("userGender", user_Gender);
+%>
+
 
 <html>
 <head>
@@ -37,17 +54,15 @@ background-color : #212121;}
 <script> 
 function checkValue(){  
     	
-						var re0 = /^[A-Za-z0-9+]{4,10}$/; 
+					
     				var re = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{8,12}$/; // 비밀번호 정규식
     				var re1 = /^[가-힣]{2,4}$/; //이름 정규식
     				var re2 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;//이메일 정규식
     				var re3 = /\d{3,4}/; // 핸드폰 가운데자리 정규식
     				var re4 = /\d{4}/; // 핸드폰 마지막자리 정규식
-    				
-    				var id = document.getElementById("userID").value;
+    				    				
     				var pw = document.getElementById("userPW").value;    				
-    				var name = document.getElementById("userName").value;
-    				var YY = document.getElementById("userYY").value;
+    				var name = document.getElementById("userName").value;    				
     				var email = document.getElementById("userEmail").value;
     				var phone2 = document.getElementById("userPhone2").value;
     				var phone3 = document.getElementById("userPhone3").value;
@@ -55,48 +70,17 @@ function checkValue(){
     				var today = new Date();
     		    var yearNow = today.getFullYear();
     				
-            var obj = document.fr;        
-          
-            if((re0.test(id))==false){ 
-            	alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");   
-            	return false;			
-    				}
-            
-            else if (obj.userID.value.length < 4 || obj.userID.value.length > 10) {
-           		alert("아이디는 4~10자 사이로 입력하세요.");            
-              return false;
-            }
-           	
-            else if(obj.idDuplication.value == "idUncheck"){
-							alert("아이디 중복체크를 해주세요.");
-							return false;
-						}
-           	
-            else if((re.test(pw))==false){
+            var obj = document.fr;         
+                       	
+           if((re.test(pw))==false){
            		alert("비밀번호는 영문,숫자 및 특수문자 조합으로 8~12자 사이로 입력하세요.");  
-            	return false
+            	return false 
            	}
            	
             else if(obj.userPW.value != obj.userCheckPW.value){
            		alert("패스워드가 일치하지 않습니다.");  
               return false;
-            }
-           	
-            else if((re1.test(name))==false) {
-            	alert("이름형태가 일치하지않습니다.");            
-              return false;
-            }
-            
-            else if(obj.userYY.value == '' || obj.userYY.value < 1900 || obj.userYY.value > yearNow) {
-            	alert("태어난 연도를 다시 확인해주세요.");            
-              return false;
-            } 
-            
-            else if(isNaN(obj.userYY.value)==true){
-            	alert("태어난 연도를 다시 확인해주세요.");
-            	return false;
-            }
-            
+            }  
             else if((re2.test(email))==false){
             	alert("이메일형식이 아닙니다."); 
             	return false;
@@ -112,7 +96,7 @@ function checkValue(){
             	return false;
             }
             else{
-            	alert("회원가입이 완료되었습니다.");
+            	alert("회원정보수정이 완료되었습니다.");
             	return true;
             }
             
@@ -325,7 +309,7 @@ background-color : #212121;}
 
 <%@ include file="NAVbar.jsp"%>
 <body class="body1">
-	<form action="SignupProcess.jsp" method="post" name="fr"
+	<form action="UpdateProcess.jsp" method="post" name="fr"
 		onsubmit="return checkValue()">
 		<div class="container">
 			<main>
@@ -343,13 +327,8 @@ background-color : #212121;}
 								<label for="userID" class="form-label">아이디</label>
 								<div style="display: flex">
 									<input type="text" class="form-control" id="userID"
-										name="userID" maxlength="10" placeholder="아이디"
-										onkeyup="fun1()" required> <input
-										class="btn btn-success" type="button" value="중복확인"
-										onclick="checkid()" style="margin-left: 10px"> <input
-										type="hidden" id="idDuplication" value="idUncheck">
-								</div>
-								<span id="alert_text"></span>
+										name="userID" maxlength="10" placeholder="${userID}" disabled>
+								</div>								
 							</div>
 
 							<div class="col-12">
@@ -377,76 +356,25 @@ background-color : #212121;}
 							<div>
 								<div class="row">
 									<label for="userBirth" class="form-label">생년월일</label>
-									<div class="col-md-4">
-										<input type="text" class="form-control" id="userYY"
-											name="userYY" maxlength="4" placeholder="년(4자)"
-											onkeyup="fun5()" required> <span id="alert_YY"></span>
-									</div>
-
-									<div class="col-md-4">
-										<select class="form-select" name="userMM" required>
-											<option value="">월</option>
-											<option value="01">01</option>
-											<option value="02">02</option>
-											<option value="03">03</option>
-											<option value="04">04</option>
-											<option value="05">05</option>
-											<option value="06">06</option>
-											<option value="07">07</option>
-											<option value="08">08</option>
-											<option value="09">09</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
-										</select>
-									</div>
-
-									<div class="col-md-4">
-										<select class="form-select" name="userDD" required>
-											<option value="">일</option>
-											<option value="1">01</option>
-											<option value="2">02</option>
-											<option value="3">03</option>
-											<option value="4">04</option>
-											<option value="5">05</option>
-											<option value="6">06</option>
-											<option value="7">07</option>
-											<option value="8">08</option>
-											<option value="9">09</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
-											<option value="13">13</option>
-											<option value="14">14</option>
-											<option value="15">15</option>
-											<option value="16">16</option>
-											<option value="17">17</option>
-											<option value="18">18</option>
-											<option value="19">19</option>
-											<option value="20">20</option>
-											<option value="21">21</option>
-											<option value="22">22</option>
-											<option value="23">23</option>
-											<option value="24">24</option>
-											<option value="25">25</option>
-											<option value="26">26</option>
-											<option value="27">27</option>
-											<option value="28">28</option>
-											<option value="29">29</option>
-											<option value="30">30</option>
-											<option value="31">31</option>
-										</select>
-									</div>
+									<div class="col-12">
+									<div style="display: flex">
+										<input type="text" class="form-control" id="userBirth"
+										name="userBirth" maxlength="10" placeholder="${userBirth}" disabled>
+										</div>
+									</div>									
 								</div>
 							</div>
 
-							<div class="col-12" style="margin-bottom: 2rem;">
-								<label for="userGender" class="form-label">성별</label> <select
-									class="form-select" name="userGender" id="userGender" required>
-									<option value="">성별</option>
-									<option value="남">남</option>
-									<option value="여">여</option>
-								</select>
+							<div>
+								<div class="row">
+									<label for="userBirth" class="form-label">성별</label>
+									<div class="col-12">
+									<div style="display: flex">
+										<input type="text" class="form-control" id="userGender"
+										name="userGender" maxlength="10" placeholder="${userGender}" disabled>
+										</div>
+									</div>									
+								</div>
 							</div>
 
 							<div class="col-12">
@@ -501,7 +429,7 @@ background-color : #212121;}
 
 						<hr class="my-4">
 						<button class="w-100 btn btn-primary btn-lg btn-success"
-							type="submit">회원가입 완료</button>
+							type="submit">회원정보 수정</button>
 					</div>
 				</div>
 			</main>

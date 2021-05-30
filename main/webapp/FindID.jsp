@@ -51,6 +51,9 @@ body {
 	color: #FFFFFF
 }
 
+.body1{
+background-color : #212121;}
+}
 @media ( min-width : 768px) {
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;
@@ -59,7 +62,7 @@ body {
 </style>
 </head>
 <%@ include file="NAVbar.jsp"%>
-<body class="bg-dark">	
+<body class = "body1">	
 	<div class="container">
 		<main>
 		<div class="py-5 text-center" Style="margin-top : 100px">				

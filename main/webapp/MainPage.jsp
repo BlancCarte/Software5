@@ -35,7 +35,7 @@ h2 { text-align: center; }
                         <hr class="divider my-4" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 font-weight-light mb-5">문구입력 대기중</p>
+                        <p class="text-white-75 font-weight-light mb-5">소프트웨어공학 텀프로젝트 5조</p>
                        <div>
                         <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">예약하기</a> 
            						  &nbsp; &nbsp; &nbsp; &nbsp;	
@@ -59,7 +59,7 @@ h2 { text-align: center; }
 							width="300" height="200">
 					</div>
  
-					<h2>메뉴확인</h2>
+					<h2>Info</h2>
 
 				</div>
 
@@ -70,7 +70,7 @@ h2 { text-align: center; }
 							width="300" height="200">
 					</div>
 
-					<h2>약도</h2>
+					<h2>Menu</h2>
 
 				</div>
 
@@ -80,7 +80,7 @@ h2 { text-align: center; }
 							width="300" height="200">
 					</div>
 
-					<h2>예약/조회</h2>
+					<h2>Reservation</h2>
 
 				</div>
 			</div>     
