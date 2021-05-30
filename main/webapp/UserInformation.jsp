@@ -400,9 +400,11 @@ background-color : #212121;}
 									</div>
 
 									<div class="col-md-4">
+									<div style="display: flex">
 										<input type="text" class="form-control" name="userPhone2"
 											id="userPhone2" maxlength="4" placeholder="" onkeyup="fun7()"
 											required> <span id="alert_userPhone2"></span>
+											</div>
 									</div>
 
 									<div class="col-md-4">

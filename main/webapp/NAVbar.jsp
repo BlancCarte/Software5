@@ -17,7 +17,19 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="MainPage.jsp">빈센조</a>
+            <%
+				String ID = (String)session.getAttribute("userID");
+        String Root = "1234";
+        String token = (String)session.getAttribute("token2");
+        
+        if(token != null){
+			%> 
+			<a class="navbar-brand js-scroll-trigger" href="MainPage2.jsp">빈센조</a> <%
+		}
+        else{
+					%> <a class="navbar-brand js-scroll-trigger" href="MainPage.jsp">빈센조</a>
+					 <%}						
+								%>                
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
@@ -47,15 +59,15 @@
                         <li class="dropdown-item"><a class="nav-link js-scroll-trigger" href="#" style = "color : #000000; margin-left : -25px">예약확인</a></li>                        
                         </ul>                        
                         </li>
-                       <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Signup.jsp">SignUp</a></li> 
-                        <%
-				String ID = (String)session.getAttribute("userID");
-        String Root = "1234";
-        String access_token = (String)session.getAttribute("acs_token");
-        System.out.println(access_token);
-        if(access_token != null){
+                       <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Signup.jsp">SignUp</a></li>
+                                          
+                       
+        <%
+				
+        
+        if(token != null){
 			%> </li>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger" href="Login.jsp">Logout</a></li> <%
+			<li class="nav-item"><a class="nav-link js-scroll-trigger" href="kakaoLogout.jsp">Logout</a></li> <%
 		}
         else if(ID!=null){
 					%> <li class="nav-item"><a class="nav-link js-scroll-trigger" href="My_Page.jsp">MyPage</a>
