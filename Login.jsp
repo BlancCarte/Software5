@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<html>
+<html lang="kr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,37 +100,30 @@ background-color : #212121;}
 				<li class="list-inline-item"><a href="Signup.jsp"
 					style="text-decoration: none; color: #5CB85C">회원가입</a></li>
 			</ul>
-			<a id="kakao-login-btn"></a>
-			<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
+			
+			
+	
+			
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>	
 <a id="kakao-login-btn"></a>
 <a href="http://developers.kakao.com/logout"></a>
-<script type='text/javascript'>
-    //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('13f658a5514329fd9fdcd78d0684720d');
-    console.log(Kakao.isInitialized());
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-        container: '#kakao-login-btn',
-        persistAccessToken: true,
-        success: function (authObj) {
-        		request.setCharacterEncoding("utf-8");
-            alert(JSON.stringify(authObj));
-            Kakao.Auth.setAccessToken(authObj.access_token);
-            var acs_token = authObj.access_token;
-            session.setAttribute("acs_token", acs_token);
-        },
-        fail: function (err) {
-            alert(JSON.stringify(err));
-        }
-    });
-  //]]>
-
-</script>
-    
-			<%@ include file="Footer3.jsp"%>
+<script type="text/javascript">     
+   Kakao.init('13f658a5514329fd9fdcd78d0684720d');     
+   Kakao.Auth.createLoginButton({	   
+   container: '#kakao-login-btn',
+   success: function(authObj) {             
+             var token = JSON.stringify(authObj); 
+             sessionStorage.setItem("token", JSON.stringify(authObj));
+             var encodedToken = encodeURI(token);
+             window.location.href = "MainPage.jsp?token=" + encodedToken;             
+             },    
+       fail: function(err) {
+         alert(JSON.stringify(error));
+       }
+     });
+   </script>
+   
+		<%@ include file="Footer3.jsp"%>
 
 		</form>
 				<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

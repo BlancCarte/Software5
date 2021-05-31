@@ -399,10 +399,10 @@ background-color : #212121;}
 										</select>
 									</div>
 
-									<div class="col-md-4">
+									<div class="col-md-4">									
 										<input type="text" class="form-control" name="userPhone2"
 											id="userPhone2" maxlength="4" placeholder="" onkeyup="fun7()"
-											required> <span id="alert_userPhone2"></span>
+											required> <span id="alert_userPhone2"></span>											
 									</div>
 
 									<div class="col-md-4">

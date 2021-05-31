@@ -2,12 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<% String token1 = request.getParameter("token");
-session.setAttribute("token2", token1);
-if(token1 !=null){
-response.sendRedirect("MainPage2.jsp");
-}%>
+<%@page import="java.io.*"%>
 <%@ include file="NAVbar.jsp"%>
+
 <style>
 h2 { text-align: center; }
 </style>
