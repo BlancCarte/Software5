@@ -28,9 +28,9 @@ public class DAO {
 	// DB연결 메소드 user, pass는 각자 껄로 변경해야함
 	public void run() {
 		try {
-			String url = "jdbc:mariadb://localhost:3306/mbd";
-			String user = "MBD_TEST";
-			String pass = "1234";
+			String url = "jdbc:mariadb://localhost:3306/person";
+			String user = "root";
+			String pass = "root1234";
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, pass);
 		} catch (Exception e) {

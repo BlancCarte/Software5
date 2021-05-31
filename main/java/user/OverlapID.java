@@ -14,16 +14,16 @@ public class OverlapID {
 		int result = -1;
 		try {
 			String sql = "select MAX(ID) from mbd_user where ID=?"; // select 뒤에 MAX()를 쓰면 WHERE 조건
-																							// 절에 해당하는 값이 없을 때 null을 리턴
+																							// �젅�뿉 �빐�떦�븯�뒗 媛믪씠 �뾾�쓣 �븣 null�쓣 由ы꽩
 			conn = dao.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ID);			
+			pstmt.setString(1, ID);	//1은 첫번째 물음표 		
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				DB_ID = rs.getString(1);
 				if (DB_ID != null) {
-					result = 1;// 중복된 아이디가 있을때
+					result = 1; // 중복된 아이디가 있을때
 					
 				} else 
 					result = 0;// 중복된 아이디가 없을때
