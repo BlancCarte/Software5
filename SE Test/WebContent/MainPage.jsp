@@ -36,9 +36,9 @@ h2 { text-align: center; }
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5">문구입력 대기중</p>
                        <div>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">예약하기</a> 
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="Reservation.jsp">예약하기</a> 
            						  &nbsp; &nbsp; &nbsp; &nbsp;	
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">예약확인</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="Check.jsp">예약확인</a>
                         
                         </div>
                         <div>                    

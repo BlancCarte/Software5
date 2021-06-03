@@ -1,10 +1,9 @@
 package user;
 
 public class ResrInfo {
+	private String onum;
 	private String name;
-	private String pnum1;
-	private String pnum2;
-	private String pnum3;
+	private String pnum;
 	private String date;
 	private String time;
 	private String head;
@@ -17,29 +16,23 @@ public class ResrInfo {
 	private String chocolatenum;
 	private String cheesenum;
 	
+	public String getOnum() {
+		return onum;
+	}
+	public void setOnum(String onum) {
+		this.onum = onum;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPnum1() {
-		return pnum1;
+	public String getPnum() {
+		return pnum;
 	}
-	public void setPnum1(String pnum1) {
-		this.pnum1 = pnum1;
-	}
-	public String getPnum2() {
-		return pnum2;
-	}
-	public void setPnum2(String pnum2) {
-		this.pnum2 = pnum2;
-	}
-	public String getPnum3() {
-		return pnum3;
-	}
-	public void setPnum3(String pnum3) {
-		this.pnum3 = pnum3;
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
 	}
 	public String getDate() {
 		return date;

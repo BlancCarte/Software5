@@ -30,6 +30,9 @@
           		font-size: 3.5rem;
         	}
       	}
+      	.body1{
+			background-color : #212121;}
+		}
     	</style>
 		
 		<script>
@@ -139,13 +142,13 @@
     	
 	</head>
 
-	<body class="bg-dark">
+	<body class="body1">
     
 	 <div class="container">
 
       <div class="col-lg-12">
         <h1 class="mb-3" style="color:white; text-align:center; margin-top:30px; margin-bottom:20px;">Reservation</h1>
-        <form class="needs-validation" action="ReservationPro.jsp" method="post" name="fr" onsubmit="return valueCheck()">
+        <form class="needs-validation" action="ReservationProcess.jsp" method="post" name="fr" onsubmit="return valueCheck()">
           <div class="row g-3">
             <div class="col-sm-12">
               <label for="firstName" class="form-label" style="color:white;">성함</label>
@@ -208,53 +211,66 @@
               </div>
             </div>
             
+	            <div class="col-md-12">
+	              <label for="" class="form-label" style="color:white;">예약 인원</label>
+	              <input type="text" class="form-control" id="head" name="head" value="" placeholder="인원수 (숫자만 입력하세요)" onkeyup="headCheck()" required>
+	              <span id="alert_head"></span>
+	            </div>
+	        </div>
+	        <br>
+	        <br>
+            <div class="row row-cols-3">
             
-            <div class="col-md-12">
-              <label for="zip" class="form-label">　</label>
-              <input type="text" class="form-control" id="head" name="head" value="" placeholder="인원수 (숫자만 입력하세요)" onkeyup="headCheck()" required>
-              <span id="alert_head"></span>
-            </div>
-            
-			<h6 style="color:white; margin-bottom:-10px;">메인 메뉴</h6>
-			<div class="col-md-2" style="color:white;">
-				Steak&nbsp;&nbsp;
-				<input type="number" name="steaknum" min="0" max="9" value="0">
+					<div class="col-2"><h6 style="color:white; text-align:center;">메인 메뉴</h6></div>
+					<div class="col-5" style="color:white; text-align:center; align:center;">
+						<label for="" class="form-label" style="color:white;">Steak</label>
+						<input type="number" style="width:50%;" name="steaknum" min="0" max="9" value="0">
+					</div>
+					<div class="col-5" style="color:white; text-align:center; align:center;">
+						<label for="" class="form-label" style="color:white;">Pasta</label>
+						<input type="number" style="width:50%;" name="pastanum" min="0" max="9" value="0">
+					</div>
 			</div>
-			<div class="col-md-2" style="color:white;">
-				Pasta&nbsp;&nbsp;
-				<input type="number" name="pastanum" min="0" max="9" value="0">
+			<br>
+			<div class="row row-cols-3">
+			    <div class="col-2"><h6 style="color:white; text-align:center;">사이드 메뉴</h6></div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Salad</label>
+					<input type="number" style="width:50%;" name="saladnum" min="0" max="9" value="0">
+				</div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Chips</label>
+					<input type="number" style="width:50%;" name="chipsnum" min="0" max="9" value="0">
+				</div>
 			</div>
-		    <h6 style="color:white; margin-bottom:-10px;">사이드 메뉴</h6>
-			<div class="col-md-2" style="color:white;">
-				Salad&nbsp;&nbsp;
-				<input type="number" name="saladnum" min="0" max="9" value="0">
+			<br>
+			<div class="row row-cols-3">
+				<div class="col-2"><h6 style="color:white; text-align:center;">음료</h6></div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Red&nbsp;&nbsp;</label>
+					<input type="number" style="width:50%;" name="sodanum"  min="0" max="9" value="0">
+				</div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">White</label>
+					<input type="number" style="width:50%;" name="juicenum" min="0" max="9" value="0">
+				</div>
 			</div>
-			<div class="col-md-2" style="color:white;">
-				Chips&nbsp;&nbsp;
-				<input type="number" name="chipsnum" min="0" max="9" value="0">
-			</div>
-			<h6 style="color:white; margin-bottom:-10px;">음료</h6>
-			<div class="col-md-2" style="color:white;">
-				Soda&nbsp;&nbsp;
-				<input type="number" name="sodanum"  min="0" max="9" value="0">
-			</div>
-			<div class="col-md-2" style="color:white;">
-				Juice&nbsp;&nbsp;
-				<input type="number" name="juicenum" min="0" max="9" value="0">
-			</div>
-			<h6 style="color:white; margin-bottom:-10px;">디저트</h6>
-			<div class="col-md-3" style="color:white;">
-				Chocolate Cake&nbsp;&nbsp;
-				<input type="number" name="chocolatenum" min="0" max="9" value="0">
-			</div>
-			<div class="col-md-3" style="color:white;">
-				Cheese Cake&nbsp;&nbsp;
-				<input type="number" name="cheesenum" min="0" max="9" value="0">
-			</div>
-			<h6 style="color:white; margin-bottom:-10px;">(모든 메뉴는 최대 9개 주문 가능합니다.)</h6>
-          </div>
-
-          <hr class="my-4" style="background-color:white; border:0px; height:2px;">
+			<br>
+			<div class="row row-cols-3">
+				<div class="col-2"><h6 style="color:white; text-align:center;">디저트</h6></div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Cake&nbsp;</label>
+					<input type="number" style="width:50%;" name="chocolatenum" min="0" max="9" value="0">
+				</div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Tea&nbsp;&nbsp;</label>
+					<input type="number" style="width:50%;" name="cheesenum" min="0" max="9" value="0">
+				</div>
+				<br>
+				<br>
+	        </div>
+				<h6 style="color:white; text-align:left;">(모든 메뉴는 최대 9개 주문 가능합니다.)</h6>
+          <hr class="" style="background-color:white; border:0px; height:2px;">
 
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="same-address" required>
@@ -267,7 +283,9 @@
               
           <br>
           
-		  <div align=center><button class="w-100 btn btn-primary btn-lg" type="submit">예약하기</button></div>
+		  <div align=center>
+		    <button class="w-100 btn btn-primary btn-lg" type="submit">예약하기</button>
+		  </div>
           
         </form>
       </div>

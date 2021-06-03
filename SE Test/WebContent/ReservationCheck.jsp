@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="user.ResrInfo"%>
-<%@ page import="user.Reservation"%>
 <%@page import="java.util.*"%>
-<%ResrInfo info= (ResrInfo)session.getAttribute("info");%>
-<% 
-String name = info.getName();
-String pnum1 = info.getPnum1();
-String pnum2 = info.getPnum2();
-String pnum3 = info.getPnum3();
-String date = info.getDate();
-String time = info.getTime();
-String head = info.getHead();
-String steaknum = info.getSteaknum();
-String pastanum = info.getPastanum();
-String saladnum = info.getSaladnum();
-String chipsnum = info.getChipsnum();
-String sodanum = info.getSodanum();
-String juicenum = info.getJuicenum();
-String chocolatenum = info.getChocolatenum();
-String cheesenum = info.getCheesenum();
+<%@page import="user.UpdateReserv"%>
+<%@page import="user.Check"%>
+<%@page import="user.ResrInfo"%>
+<%
+ResrInfo user= (ResrInfo)session.getAttribute("key");
+String name0 = user.getName();
+session.setAttribute("name1",name0);
+String pnum0 = user.getPnum();
+session.setAttribute("pnum0",pnum0);
+String pnum1 = pnum0.substring(0,3);
+session.setAttribute("pnum1",pnum1);
+String pnum2 = pnum0.substring(4,8);
+session.setAttribute("pnum2",pnum2);
+String pnum3 = pnum0.substring(9,13);
+session.setAttribute("pnum3",pnum3);
+String date0 = user.getDate();
+String time0 = user.getTime();
+String head0 = user.getHead();
+String onum1 = user.getOnum();
+session.setAttribute("onum1",onum1);
 %>
 <html>
 	<head>
@@ -50,38 +51,13 @@ String cheesenum = info.getCheesenum();
           		font-size: 3.5rem;
         	}
       	}
+      	.body1{
+			background-color : #212121;}
+		}
     	</style>
 		
 		<script>
-		function valueCheck(){
-			var nameRule = /^[가-힣]{2,4}$/; //이름 정규식
-			var pnum2Rule = /\d{3,4}/; // 핸드폰 가운데자리 정규식
-			var pnum3Rule = /\d{4}/; // 핸드폰 마지막자리 정규식
-			
-			var name = document.getElementById("name").value;
-			var pnum2 = document.getElementById("pnum2").value;
-			var pnum3 = document.getElementById("pnum3").value;
-			
-			var obj = document.fr;
-			
-			if((nameRule.test(name))==false) {
-            	alert("올바른 이름을 입력하세요.");
-                return false;
-			}
-			else if((pnum2Rule.test(pnum2))==false){
-            	alert("핸드폰 두번째 자리를 다시 확인해주세요"); 
-            	return false;
-            }
-            
-            else if((pnum3Rule.test(pnum3))==false){
-            	alert("핸드폰 세번째 자리를 다시 확인해주세요"); 
-            	return false;
-            }
-            else{
-            	alert("예약이 완료되었습니다.");
-            	return true;
-            }
-		}
+		
 		function nameCheck() {
 	        var obj = document.fr;
 	        var name1 = document.getElementById("name").value;
@@ -159,17 +135,17 @@ String cheesenum = info.getCheesenum();
     	
 	</head>
 
-	<body class="bg-dark">
+	<body class="body1">
     
 	 <div class="container">
 
       <div class="col-lg-12">
-        <h1 class="mb-3" style="color:white; text-align:center; margin-top:30px; margin-bottom:20px;">Reservation</h1>
-        <form class="needs-validation" action="ReservationPro.jsp" method="post" name="fr" onsubmit="return valueCheck()">
+        <h1 class="mb-3" style="color:white; text-align:center; margin-top:30px; margin-bottom:20px;">날짜, 시간, 메뉴를 다시 선택해주세요</h1>
+        <form class="needs-validation" action="ResrUpdProcess.jsp" method="post" name="fr">
           <div class="row g-3">
             <div class="col-sm-12">
               <label for="firstName" class="form-label" style="color:white;">성함</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="${name}" disabled>
+              <input type="text" class="form-control" id="name" name="name" placeholder="${name1}" disabled>
             </div>
 			
             <div class="col-md-4">
@@ -191,70 +167,81 @@ String cheesenum = info.getCheesenum();
             
             <div class="col-md-6">
               <label for="" class="form-label" style="color:white;">예약 날짜</label>
-              <input type="date" class="form-control" id="today" min="today" name="date"></input>
-                <script>
-				  document.getElementById('today').valueAsDate = new Date();
-				</script>
+              <input type="date" class="form-control" id="date0" name="date" required></input>
             </div>
             
             <div class="col-md-6">
               <label for="" class="form-label" style="color:white;">예약 시간 (오후6시~10시까지 30분 단위로 예약 가능)</label>
-              <input type="time" class="form-control" id="now" name="time" min="18:00" max="22:00" step="1800"></input>
+              <input type="time" class="form-control" id="${time0}" name="time" min="18:00" max="22:00" step="1800" required></input>
             </div>
             
             
             <div class="col-md-12">
-              <label for="" class="form-label">　</label>
-              <input type="text" class="form-control" id="head" name="head" value="" placeholder="인원수 (숫자만 입력하세요)" onkeyup="headCheck()" required>
+              <label for="" class="form-label" style="color:white;">예약 인원</label>
+              <input type="text" class="form-control" id="head" name="head" value="" placeholder="${head0}" onkeyup="headCheck()" required>
               <span id="alert_head"></span>
             </div>
+           </div>
+			<br>
+	        <br>
+            <div class="row row-cols-3">
             
-			<h6 style="color:white; margin-bottom:-10px;">메인 메뉴</h6>
-			<div class="col-md-2" style="color:white;">
-				Steak&nbsp;&nbsp;
-				<input type="number" name="steaknum" min="0" max="9" value="0">
+					<div class="col-2"><h6 style="color:white; text-align:center;">메인 메뉴</h6></div>
+					<div class="col-5" style="color:white; text-align:center; align:center;">
+						<label for="" class="form-label" style="color:white;">Steak</label>
+						<input type="number" style="width:50%;" name="steaknum" min="0" max="9" value="0">
+					</div>
+					<div class="col-5" style="color:white; text-align:center; align:center;">
+						<label for="" class="form-label" style="color:white;">Pasta</label>
+						<input type="number" style="width:50%;" name="pastanum" min="0" max="9" value="0">
+					</div>
 			</div>
-			<div class="col-md-2" style="color:white;">
-				Pasta&nbsp;&nbsp;
-				<input type="number" name="pastanum" min="0" max="9" value="0">
+			<br>
+			<div class="row row-cols-3">
+			    <div class="col-2"><h6 style="color:white; text-align:center;">사이드 메뉴</h6></div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Salad</label>
+					<input type="number" style="width:50%;" name="saladnum" min="0" max="9" value="0">
+				</div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Chips</label>
+					<input type="number" style="width:50%;" name="chipsnum" min="0" max="9" value="0">
+				</div>
 			</div>
-		    <h6 style="color:white; margin-bottom:-10px;">사이드 메뉴</h6>
-			<div class="col-md-2" style="color:white;">
-				Salad&nbsp;&nbsp;
-				<input type="number" name="saladnum" min="0" max="9" value="0">
+			<br>
+			<div class="row row-cols-3">
+				<div class="col-2"><h6 style="color:white; text-align:center;">음료</h6></div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Red&nbsp;&nbsp;</label>
+					<input type="number" style="width:50%;" name="sodanum"  min="0" max="9" value="0">
+				</div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">White</label>
+					<input type="number" style="width:50%;" name="juicenum" min="0" max="9" value="0">
+				</div>
 			</div>
-			<div class="col-md-2" style="color:white;">
-				Chips&nbsp;&nbsp;
-				<input type="number" name="chipsnum" min="0" max="9" value="0">
-			</div>
-			<h6 style="color:white; margin-bottom:-10px;">음료</h6>
-			<div class="col-md-2" style="color:white;">
-				Soda&nbsp;&nbsp;
-				<input type="number" name="sodanum"  min="0" max="9" value="0">
-			</div>
-			<div class="col-md-2" style="color:white;">
-				Juice&nbsp;&nbsp;
-				<input type="number" name="juicenum" min="0" max="9" value="0">
-			</div>
-			<h6 style="color:white; margin-bottom:-10px;">디저트</h6>
-			<div class="col-md-3" style="color:white;">
-				Chocolate Cake&nbsp;&nbsp;
-				<input type="number" name="chocolatenum" min="0" max="9" value="0">
-			</div>
-			<div class="col-md-3" style="color:white;">
-				Cheese Cake&nbsp;&nbsp;
-				<input type="number" name="cheesenum" min="0" max="9" value="0">
-			</div>
-			<h6 style="color:white; margin-bottom:-10px;">(모든 메뉴는 최대 9개 주문 가능합니다.)</h6>
-          </div>
-
-          <hr class="my-4" style="background-color:white; border:0px; height:2px;">
+			<br>
+			<div class="row row-cols-3">
+				<div class="col-2"><h6 style="color:white; text-align:center;">디저트</h6></div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Cake&nbsp;</label>
+					<input type="number" style="width:50%;" name="chocolatenum" min="0" max="9" value="0">
+				</div>
+				<div class="col-5" style="color:white; text-align:center; align:center;">
+					<label for="" class="form-label" style="color:white;">Tea&nbsp;&nbsp;</label>
+					<input type="number" style="width:50%;" name="cheesenum" min="0" max="9" value="0">
+				</div>
+				<br>
+				<br>
+	        </div>
+				<h6 style="color:white; text-align:left;">(모든 메뉴는 최대 9개 주문 가능합니다.)</h6>
+          <hr class="" style="background-color:white; border:0px; height:2px;">
 
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="same-address" required>
             <label class="form-check-label" for="same-address" style="color:white;">개인정보 수집에 동의합니다</label>
             <div class="invalid-feedback">
-              개인정보 수집에 동의하셔야 예약 수정이 가능합니다.
+              개인정보 수집에 동의하셔야 예약이 가능합니다.
             </div>
           </div>
           
@@ -263,7 +250,7 @@ String cheesenum = info.getCheesenum();
           
           <div align=center>
 		    <button class="btn btn-primary btn-lg" type="submit" style="width:49.75%;">예약수정</button>
-		    <button class="btn btn-primary btn-lg" type="submit" style="width:49.75%;">예약취소</button>
+		    <button class="btn btn-primary btn-lg" type="button" onclick="location.href='DelReservProcess.jsp'" style="width:49.75%;">예약취소</button>
 		  </div>
 		  
         </form>
