@@ -17,8 +17,11 @@ session.setAttribute("pnum2",pnum2);
 String pnum3 = pnum0.substring(9,13);
 session.setAttribute("pnum3",pnum3);
 String date0 = user.getDate();
+session.setAttribute("date0",date0);
 String time0 = user.getTime();
+session.setAttribute("time0",time0);
 String head0 = user.getHead();
+session.setAttribute("head0",head0);
 String onum1 = user.getOnum();
 session.setAttribute("onum1",onum1);
 %>
@@ -58,59 +61,7 @@ session.setAttribute("onum1",onum1);
 		
 		<script>
 		
-		function nameCheck() {
-	        var obj = document.fr;
-	        var name1 = document.getElementById("name").value;
-	        var regex = /^[가-힣]{2,4}$/;
-	        
-	        if(obj.name.value == ''){
-	        	document.getElementById("alert_name").innerHTML=('<span style="color: red;">이름을 입력하세요.</span>');  
-	        	return;
-	        }
-	        else if((regex.test(name1))==false) {
-	            document.getElementById("alert_name").innerHTML=('<span style="color: red;">올바른 이름을 입력하세요.</span>');            
-	            return;
-	        } 
-	        else {
-	            document.getElementById("alert_name").innerHTML=('<span style="color: green;">입력되었습니다.</span>');    
-	        }
-	    }
-		function pnum2Check() {
-	        var obj = document.fr;              
-	        var phone2 = document.getElementById("pnum2").value;  
-	        var regex = /\d{3,4}/;
-	        
-	      
-	        if(obj.pnum2.value == '') {
-	            document.getElementById("alert_pnum2").innerHTML=('<span style="color: red;">전화번호 가운데 자리를 입력하세요.</span>');            
-	            return;
-	        } 
-	        else if((regex.test(phone2))==false){
-	        	document.getElementById("alert_pnum2").innerHTML=('<span style="color: red;">잘못된 형식입니다.</span>'); 
-	        	return;
-	        }
-	        else {
-	            document.getElementById("alert_pnum2").innerHTML=('<span style="color: green;">입력되었습니다.</span>');    
-	        }
-	    }
-	    function pnum3Check() {
-	        var obj = document.fr;              
-	        var phone3 = document.getElementById("pnum3").value;  
-	        var regex = /\d{4}/;
-	        
-	      
-	        if(obj.pnum3.value == '') {
-	            document.getElementById("alert_pnum3").innerHTML=('<span style="color: red;">전화번호 마지막 자리를 입력하세요.</span>');            
-	            return;
-	        } 
-	        else if((regex.test(phone3))==false){
-	        	document.getElementById("alert_pnum3").innerHTML=('<span style="color: red;">잘못된 형식입니다.</span>'); 
-	        	return;
-	        }
-	        else {
-	            document.getElementById("alert_pnum3").innerHTML=('<span style="color: green;">입력되었습니다.</span>');    
-	        }
-	    }
+		
 	    function headCheck() {
 	        var obj = document.fr;              
 	        var headC = document.getElementById("head").value;  
@@ -126,7 +77,7 @@ session.setAttribute("onum1",onum1);
 	        	return;
 	        }
 	        else {
-	            document.getElementById("alert_head").innerHTML=('<span style="color: green;">입력되었습니다.</span>');    
+	            document.getElementById("alert_head").innerHTML=('<span style="color: green;">변경되었습니다.</span>');    
 	        }
 	    }
 		</script>
@@ -166,18 +117,25 @@ session.setAttribute("onum1",onum1);
             </div>
             
             <div class="col-md-6">
-              <label for="" class="form-label" style="color:white;">예약 날짜</label>
-              <input type="date" class="form-control" id="date0" name="date" required></input>
+              <label for="firstName" class="form-label" style="color:white;">예약하신 날짜</label>
+              <input type="text" class="form-control" id="date1" name="date1" placeholder="${date0}" disabled>
             </div>
-            
             <div class="col-md-6">
-              <label for="" class="form-label" style="color:white;">예약 시간 (오후6시~10시까지 30분 단위로 예약 가능)</label>
-              <input type="time" class="form-control" id="${time0}" name="time" min="18:00" max="22:00" step="1800" required></input>
+              <label for="firstName" class="form-label" style="color:white;">예약하신 시간</label>
+              <input type="text" class="form-control" id="time1" name="time1" placeholder="${time0}" disabled>
+            </div>
+            <div class="col-md-6">
+              <label for="" class="form-label" style="color:white;">변경하실 날짜</label>
+              <input type="date" class="form-control" id="date" name="date" required></input>
+            </div>
+            <div class="col-md-6">
+              <label for="" class="form-label" style="color:white;">변경하실 시간 (오후6시~10시까지 30분 단위로 예약 가능)</label>
+              <input type="time" class="form-control" id="time" name="time" min="18:00" max="22:00" step="1800" required></input>
             </div>
             
             
             <div class="col-md-12">
-              <label for="" class="form-label" style="color:white;">예약 인원</label>
+              <label for="" class="form-label" style="color:white;">예약 인원 (변동이 없을 시 같은 인원으로 한 번 더 입력해주세요)</label>
               <input type="text" class="form-control" id="head" name="head" value="" placeholder="${head0}" onkeyup="headCheck()" required>
               <span id="alert_head"></span>
             </div>
