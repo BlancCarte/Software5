@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<title>메인페이지</title>
 <%@page import="java.io.*"%>
 <%@ include file="NAVbar.jsp"%>
 <style>
@@ -49,7 +50,7 @@ h2 {
 					<div>
 						<a class="btn btn-primary btn-xl js-scroll-trigger"
 							href="Reservation.jsp">예약하기</a> &nbsp; &nbsp; &nbsp; &nbsp; <a
-							class="btn btn-primary btn-xl js-scroll-trigger" href="Check.jsp">예약확인</a>
+							class="btn btn-primary btn-xl js-scroll-trigger" href="ReservationCheck.jsp">예약확인</a>
 					</div>
 				</div>
 			</div>

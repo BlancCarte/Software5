@@ -8,19 +8,20 @@ public class OrderList {
 	private String phoneNumber;
 	private int headcount;
 	private String date;
-	private Date ddd;
+	private Date date_notString;
+	private String time;
 	private String tableNum;
 
 	public OrderList() {
 	}
 
-	public OrderList(String OrderNum, String Name, String PhoneNumber, int Headcount, Date Date, String TableNum) {
+	public OrderList(String OrderNum, String Name, String PhoneNumber, int Headcount, Date Date, String time, String TableNum) {
 		this.orderNum = OrderNum;
 		this.name = Name;
 		this.phoneNumber = PhoneNumber;
 		this.headcount = Headcount;
-		//this.date = Date;
-		this.ddd = Date;
+		this.date_notString = Date;
+		this.time = time;
 		this.tableNum = TableNum;
 	}
 	public String getOrderNum() {
@@ -54,7 +55,7 @@ public class OrderList {
 		this.headcount = headcount;
 	}
 	public Date getdate() {
-		return ddd;
+		return date_notString;
 	}
 
 	public void setdate(String date) {
@@ -68,9 +69,14 @@ public class OrderList {
 		this.tableNum = tableNum;
 	}
 	public String getStringdate() {
-		date = ddd.toString();
+		date = date_notString.toString();
 		return date;
 	}
-
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getTime() {
+		return time;
+	}
 
 }

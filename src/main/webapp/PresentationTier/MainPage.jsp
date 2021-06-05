@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<title>메인페이지</title>
 <%
 String token1 = request.getParameter("token");
 session.setAttribute("token2", token1);
@@ -19,7 +20,6 @@ h2 {
 </style>
 
 <head>
-<title>메인페이지</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -54,7 +54,7 @@ h2 {
 					<div>
 						<a class="btn btn-primary btn-xl js-scroll-trigger"
 							href="Reservation.jsp">예약하기</a> &nbsp; &nbsp; &nbsp; &nbsp; <a
-							class="btn btn-primary btn-xl js-scroll-trigger" href="Check.jsp">예약확인</a>
+							class="btn btn-primary btn-xl js-scroll-trigger" href="ReservationCheck.jsp">예약확인</a>
 					</div>
 				</div>
 			</div>

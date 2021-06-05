@@ -9,7 +9,18 @@ public class User {
 	private String USER_GENDER;
 	private String USER_EMAIL;
 	private String USER_PHONE;
-
+	
+	public User() {}
+	
+	public User(String USER_ID, String USER_PW, String USER_NAME, String USER_BIRTH, String USER_GENDER, String USER_EMAIL, String USER_PHONE) {
+		this.USER_ID = USER_ID;
+		this.USER_PW = USER_PW;
+		this.USER_NAME = USER_NAME;
+		this.USER_BIRTH = USER_BIRTH;
+		this.USER_GENDER = USER_GENDER;
+		this.USER_EMAIL = USER_EMAIL;
+		this.USER_PHONE = USER_PHONE;
+	}
 	public String getUserId() {
 		return USER_ID;
 	}
