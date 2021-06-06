@@ -13,10 +13,6 @@ import DataTier.*;
 import DataTier_test.*;
 
 public class DaoTest {
-	private DAO dao = DAO.getInstance();
-	private static Connection conn;
-	private static PreparedStatement pstmt;
-
 	
 	@Test
 	public void addAndDeleteDataTest() throws Exception{//예약 확인 테스트
