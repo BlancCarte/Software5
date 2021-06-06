@@ -93,8 +93,8 @@ public class GetMonthTotal {// 월간 매출
 		String[] ymd = d.split("-");
 		int year = Integer.parseInt(ymd[0]);
 		int month = Integer.parseInt(ymd[1]);
-		int day = Integer.parseInt(ymd[2]);
-		for(int i = 0; i < lineChartData.length; i++) {
+		int day = Integer.parseInt(ymd[2])-1;
+		for(int i = 0; i <= lineChartData.length; i++) {
 			if(day == i) {
 				lineChartData[i] = headCount;
 			}

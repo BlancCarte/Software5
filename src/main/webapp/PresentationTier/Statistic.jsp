@@ -139,7 +139,7 @@ request.setCharacterEncoding("UTF-8");
 					yAxes : [ {
 						ticks : {
 							min : 0,
-							max : 8000,
+							max : 300000,
 							maxTicksLimit : 5
 						},
 						gridLines : {
